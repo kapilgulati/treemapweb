@@ -1,5 +1,5 @@
 /*
-** React CORS friendly Single Page Application - https://github.com/aws-samples/react-cors-spa 
+** React CORS friendly Single Page Application - https://github.com/aws-samples/react-cors-spa
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -21,6 +21,13 @@ import logoS3 from './logoS3.png';
 import logoCF from './logoCloudFront.png';
 import './App.css';
 import { useFetch } from "react-async"
+import DataTable from "./components/DataTable"
+
+const header = ['Project Name', 'Project Description', 'Location', 'Estimated Budget', 'Project Contact', 'Lead Status', 'Next Followup', 'Lead Owner']
+
+const data = [['Route 59 expansion', 'Add new lanes on both sides', 'Porterville, IL', '100MM', 'City of Porterville', 'Complete', 'N/A', 'Kapil Gelati'],
+    ['Bears Stadium', 'Build new stadium', 'Arlington Heights, IL', '400MM', 'Chicago Bears', 'Not Started', '09/01/2023', 'Kevin Kaiser'],
+    ['Similac Canada', 'New Web Shop for Similac Canada', 'Abbot Park, IL', '1MM', 'Shona', 'Inception', '08/01/2023', 'Dimitri']]
 
 // To be replaced by the endpoint of the API deployed through the CloudFormation Template
 const APIEndPoint = 'to be replaced with your api endpoint here'
@@ -32,12 +39,10 @@ function App() {
           {APIEndPoint.startsWith('http') &&
             <APIResult />
           }
-          <img src={logo} className="App-MainLogo" alt="logo" />
         </header>
-        <p>This react-based application is hosted in an S3 bucket exposed through a CloudFront distribution</p>
-        <div className="logos">
-            <img src={logoS3} className="App-logoR2L" alt="logo S3" />
-            <img src={logoCF} className="App-logoL2R" alt="logo CloudFront" />
+
+        <div>
+            <DataTable header={header} data={data}/>
         </div>
     </div>
   );
